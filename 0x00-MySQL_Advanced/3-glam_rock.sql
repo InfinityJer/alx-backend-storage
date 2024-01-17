@@ -11,3 +11,4 @@ FROM (
     WHERE FIND_IN_SET('Glam rock', style) > 0
 ) as subquery
 ORDER BY lifespan DESC, band_name;
+
