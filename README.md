@@ -1,6 +1,4 @@
 # alx-backend-storage
-![Repo size](https://img.shields.io/github/repo-size/franklinobasy/alx-backend-storage)
-![Latest commit](https://img.shields.io/github/last-commit/franklinobasy/alx-backend-storage/master?style=round-square)
 
 This repo contains projects for learning backend development data storage concepts.
 
