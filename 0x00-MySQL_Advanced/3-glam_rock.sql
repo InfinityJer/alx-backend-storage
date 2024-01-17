@@ -1,6 +1,5 @@
 -- 3-glam_rock.sql
 -- Task: Old school band
-
 -- List bands with Glam rock as their main style, ranked by longevity
 SELECT band_name, (IFNULL(split, '2020') - formed) AS lifespan
     FROM metal_bands
