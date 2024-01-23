@@ -1,0 +1,3 @@
+// Script that displays the number of documents in the collection school
+// Run the MongoDB shell and execute commands
+db.school.count();
