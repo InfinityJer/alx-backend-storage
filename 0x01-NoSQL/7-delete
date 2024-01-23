@@ -1,0 +1,3 @@
+// Script that deletes documents with name="Holberton school" in the collection school
+// Run the MongoDB shell and execute commands
+db.school.deleteMany({ "name": "Holberton school" });
