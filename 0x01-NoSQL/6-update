@@ -1,0 +1,3 @@
+// Script that updates documents with name="Holberton school" in the collection school
+// Run the MongoDB shell and execute commands
+db.school.updateMany({ "name": "Holberton school" }, { $set: { "address": "972 Mission street" } });
