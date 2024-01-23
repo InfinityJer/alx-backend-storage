@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-# Script that creates or uses the database my_db
-
-# Run the MongoDB shell and execute commands
-mongo --quiet --eval "use my_db"
+// Script that creates or uses the database my_db
+// Run the MongoDB shell and execute commands
+use my_db;
