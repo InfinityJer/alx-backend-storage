@@ -1,0 +1,4 @@
+// Script that inserts a document in the collection school
+
+// Run the MongoDB shell and execute commands
+db.school.insert({ "name": "Holberton school" });
