@@ -23,7 +23,7 @@ def count_calls(method: Callable) -> Callable:
     def wrapper(self, *args, **kwargs):
         key = method.__qualname__
         self._redis.incr(key)  # Increment the count for the method's key
-        return method(self, *args, **kwargs)  
+        return method(self, *args, **kwargs)
         # Call the original method and return its result
 
     return wrapper
@@ -87,7 +87,7 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-    def get(self, key: str, fn: Callable = None) 
+    def get(self, key: str, fn: Callable = None)
     -> Union[str, bytes, int, float]:
         """
         Retrieve data from Redis using the provided key
@@ -95,7 +95,8 @@ class Cache:
 
         Args:
             key (str): Key to retrieve data from Redis.
-            fn (Callable, optional): Conversion function to apply to the retrieved data.
+            fn (Callable, optional):
+            Conversion function to apply to the retrieved data.
 
         Returns:
             Union[str, bytes, int, float]: Retrieved data.
@@ -142,7 +143,8 @@ class Cache:
         inputs = self._redis.lrange(inputs_key, 0, -1)
         outputs = self._redis.lrange(outputs_key, 0, -1)
 
-        print("{} was called {} times:".format(method.__qualname__, len(inputs)))
+        print("{} was called {} times:".
+              format(method.__qualname__, len(inputs)))
 
         for inp, out in zip(inputs, outputs):
             print("{} -> {}".format(inp, out))
