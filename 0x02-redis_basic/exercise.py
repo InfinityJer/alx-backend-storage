@@ -23,7 +23,8 @@ def count_calls(method: Callable) -> Callable:
     def wrapper(self, *args, **kwargs):
         key = method.__qualname__
         self._redis.incr(key)  # Increment the count for the method's key
-        return method(self, *args, **kwargs)  # Call the original method and return its result
+        return method(self, *args, **kwargs)  
+        # Call the original method and return its result
 
     return wrapper
 
@@ -59,9 +60,9 @@ def call_history(method: Callable) -> Callable:
 
 class Cache:
     """
-    Cache class for storing, retrieving, counting method calls, and maintaining call history in Redis
+    Cache class for storing, retrieving, counting method calls,
+    and maintaining call history in Redis
     """
-
 
     def __init__(self):
         """
@@ -86,10 +87,11 @@ class Cache:
         self._redis.set(key, data)
         return key
 
-
-    def get(self, key: str, fn: Callable = None) -> Union[str, bytes, int, float]:
+    def get(self, key: str, fn: Callable = None) 
+    -> Union[str, bytes, int, float]:
         """
-        Retrieve data from Redis using the provided key and optionally apply a conversion function.
+        Retrieve data from Redis using the provided key
+        and optionally apply a conversion function.
 
         Args:
             key (str): Key to retrieve data from Redis.
@@ -103,7 +105,6 @@ class Cache:
             return fn(data)
         return data
 
-
     def get_str(self, key: str) -> str:
         """
         Retrieve string data from Redis using the provided key.
@@ -116,7 +117,6 @@ class Cache:
         """
         return self.get(key, fn=lambda d: d.decode("utf-8"))
 
-
     def get_int(self, key: str) -> int:
         """
         Retrieve integer data from Redis using the provided key.
@@ -128,7 +128,6 @@ class Cache:
             int: Retrieved integer data.
         """
         return self.get(key, fn=int)
-
 
     def replay(self, method: Callable) -> None:
         """
