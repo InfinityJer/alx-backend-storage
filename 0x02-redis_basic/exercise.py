@@ -6,6 +6,7 @@ from typing import Any, Callable, Union
 import redis
 import uuid
 
+
 def count_calls(method: Callable) -> Callable:
     '''Tracks the number of calls made to a method in a Cache class.
     '''
@@ -21,6 +22,7 @@ def count_calls(method: Callable) -> Callable:
 
     return wrapper
 
+
 def call_history(method: Callable) -> Callable:
     '''Tracks the call details of a method in a Cache class.
     '''
@@ -35,17 +37,18 @@ def call_history(method: Callable) -> Callable:
         # Store input in Redis
         if isinstance(self._redis, redis.Redis):
             self._redis.rpush(in_key, str(args))
-        
+            
         # Execute the method and get its output
         output = method(self, *args, **kwargs)
         
         # Store output in Redis
         if isinstance(self._redis, redis.Redis):
             self._redis.rpush(out_key, output)
-        
+            
         return output
-    
+        
     return invoker
+
 
 def replay(fn: Callable) -> None:
     '''Displays the call history of a Cache class' method.
@@ -58,7 +61,7 @@ def replay(fn: Callable) -> None:
     # Check if the Redis instance is valid
     if not isinstance(redis_store, redis.Redis):
         return
-    
+        
     # Retrieve function name, input and output keys, and call count
     fxn_name = fn.__qualname__
     in_key = '{}:inputs'.format(fxn_name)
@@ -66,7 +69,7 @@ def replay(fn: Callable) -> None:
     fxn_call_count = 0
     if redis_store.exists(fxn_name) != 0:
         fxn_call_count = int(redis_store.get(fxn_name))
-    
+        
     # Display function call count
     print('{} was called {} times:'.format(fxn_name, fxn_call_count))
     
@@ -79,6 +82,7 @@ def replay(fn: Callable) -> None:
             fxn_input.decode("utf-8"),
             fxn_output,
         ))
+
 
 class Cache:
     '''Represents an object for storing data in a Redis data storage.
